@@ -45,7 +45,7 @@ class Login extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
-          <Segment tetAlign='center' basic>
+          <Segment textAlign='center' basic>
             <Button primary type='submit'>
               Submit
             </Button>

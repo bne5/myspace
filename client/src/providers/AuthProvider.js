@@ -8,10 +8,10 @@ export class AuthProvider extends React.Component {
   state = { user: null, };
 
   handleRegister = (user, history) => {
-    axios.post('/api/auth', user )
-      .then(res => {
+    axios.post("/api/auth", user )
+      .then( res => {
         this.setState({ user: res.data.data, });
-        history.push('/');
+        history.push("/");
       })
       .catch( res => {
         console.log(res);
@@ -19,21 +19,21 @@ export class AuthProvider extends React.Component {
   }
   
   handleLogin = (user, history) => {
-    axios.post('/api/auth/sign_in', user )
-      .then(res => {
+    axios.post("/api/auth/sign_in", user )
+      .then( res => {
         this.setState({ user: res.data.data, });
-        history.push('/');
+        history.push("/");
       })
       .catch( res => {
         console.log(res);
       })
   }
   
-  handleRegister = (history) => {
-    axios.delete('/api/auth/sign_out')
+  handleLogout = (history) => {
+    axios.delete("/api/auth/sign_out")
       .then( res => {
         this.setState({ user: null, });
-        history.push('/login');
+        history.push("/login");
       })
       .catch( res => {
         console.log(res);
@@ -46,8 +46,8 @@ export class AuthProvider extends React.Component {
         ...this.state,
         authenticated: this.state.user !== null,
         handleRegister: this.handleRegister,
-        handleLogout: this.handleLogin,
-        handleLogout: this.handleRegister,
+        handleLogout: this.handleLogout,
+        handleLogin: this.handleLogin,
         setUser: (user) => this.setState({ user, }),
       }}>
         { this.props.children }
