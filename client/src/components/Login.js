@@ -22,11 +22,12 @@ class Login extends React.Component {
 
     return (
       <Segment basic>
-        <Header as='h1' textAlign='center'>
+        <Header as='h1' textAlign='left'>
           Login
         </Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input 
+            width="10"
             label='Email'
             autoFocus
             required
@@ -37,6 +38,7 @@ class Login extends React.Component {
             onChange={this.handleChange} 
           />
           <Form.Input 
+            width="10"
             label='Password'
             required
             name='password'
@@ -45,8 +47,13 @@ class Login extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
-          <Segment textAlign='center' basic>
-            <Button primary type='submit'>
+          <Segment basic>
+            <Button 
+            floated='left' 
+            inverted 
+            color="blue" 
+            type='submit'
+            >
               Submit
             </Button>
           </Segment>

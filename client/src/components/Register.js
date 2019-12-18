@@ -25,11 +25,12 @@ class Register extends React.Component {
     const { email, password, passwordConfirmation, } = this.state;
     return (
       <Segment basic>
-        <Header as='h1' textAlign='center'>
+        <Header as='h1' textAlign='left'>
           Register
         </Header>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input 
+            width="10"
             label='Email'
             required
             autoFocus
@@ -40,6 +41,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             />
             <Form.Input 
+            width="10"
             label='Password'
             required
             name='password'
@@ -49,6 +51,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             />
             <Form.Input 
+            width="10"
             label='Password Confirmation'
             required
             name='passwordConfirmation'
@@ -58,7 +61,12 @@ class Register extends React.Component {
             onChange={this.handleChange}
             />
             <Segment textAlign='center' basic>
-              <Button primary type='submit'>
+              <Button 
+              floated='left' 
+              inverted 
+              color="blue" 
+              type='submit'
+              >
                 Submit
               </Button>
             </Segment>

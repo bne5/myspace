@@ -6,7 +6,7 @@ const NoMatch = () => (
   <Header as="h3" textAlign="center">
     Page not Found
     <hr />
-    <Link tp="/">
+    <Link to="/">
       Return Home
     </Link>
   </Header>
