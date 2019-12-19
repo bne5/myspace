@@ -11,10 +11,17 @@ class Api::PeopleController < ApplicationController
   def new
   end
 
+  def destroy
+    Person.find(params[:id])
+    Person.destroy
+  end
+
   def update
     current_user.liked_people << params[:id].to_i
     current_user.save
   end
+
+
   def my_people
     render json: User.liked(current_user.liked_people)
   end

@@ -1,19 +1,20 @@
-import React from 'react';
-import { AuthConsumer, } from '../providers/AuthProvider';
+import React, { useContext, } from 'react';
+import { AuthContext, } from '../providers/AuthProvider';
 import { Menu, } from 'semantic-ui-react';
 import { Link, withRouter, } from 'react-router-dom';
 
-class Navbar extends React.Component {
+const Navbar = (props) => {
+  const { user, handleLogout } = useContext(AuthContext);
 
-  rightNavItems = () => {
-    const { auth: { user, handleLogout, }, location, } = this.props;
-
+  const rightNavItems = () => {
+    const { location, history } = props;
+  
     if (user) {
       return (
         <Menu.Menu position='right'>
           <Menu.Item
             name='logout'
-            onClick={ () => handleLogout(this.props.history) }
+            onClick={ () => handleLogout(history) }
           />
         </Menu.Menu>
       )
@@ -39,36 +40,36 @@ class Navbar extends React.Component {
     }
   }
 
-  render() {
-    return (
+  return (
       <div>
         <Menu pointing secondary> 
           <Link to='/'>
             <Menu.Item 
               name='home'
               id='home'
-              active={this.props.location.pathname === '/'}
+              active={props.location.pathname === '/'}
             />
           </Link>
-            { this.rightNavItems() }
+          <Link to='/new_friends'>
+            <Menu.Item 
+              name='newFriends'
+              id='newFriends'
+              active={props.location.pathname === '/new_friends'}
+            />
+          </Link>
+          <Link to='/my_friends'>
+            <Menu.Item 
+              name='myFriends'
+              id='myFriends'
+              active={props.location.pathname === '/my_friends'}
+            />
+          </Link>
+            { rightNavItems() }
         </Menu>
       </div>
-    )
-  }
-}
-
-class ConnectedNavbar extends React.Component {
-  render() {
-    return (
-      <AuthConsumer>
-        { auth =>
-          <Navbar { ...this.props } auth={auth} /> 
-        }
-      </AuthConsumer>
-    )
-  }
+  )
 }
 
 
 
-export default withRouter(ConnectedNavbar);
+export default withRouter(Navbar);
