@@ -12,8 +12,7 @@ class Api::PeopleController < ApplicationController
   end
 
   def destroy
-    Person.find(params[:id])
-    Person.destroy
+    Person.find(params[:id]).destroy
   end
 
   def update

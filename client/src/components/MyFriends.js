@@ -11,7 +11,13 @@ const MyFriends = () => {
         setPeople(res.data);
       })
   }, [])
-
+  
+  const removeFriend = (id) => {
+    axios.delete(`/api/people/${id}`)
+      .then( res => {
+    setPeople(people.filter (person => person.id !== id))
+      })
+  }
 
   return (
     <Card.Group itemsPerRow={4}>
@@ -24,7 +30,10 @@ const MyFriends = () => {
             { person.name }
           </Card.Header>
             <div>
-              <Button inverted color='red'>
+              <Button 
+              inverted color='red' 
+              onClick={() => removeFriend(person.id)}
+                >
                 Remove
               </Button>
             </div>
